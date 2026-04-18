@@ -46,7 +46,7 @@ export const projects: Project[] = [
       problem:
         "Student freelancers lack a trusted, structured platform to find work. Existing marketplaces are saturated, generic, and not tailored to student workflows or trust mechanisms.",
       solution:
-        "Built a dedicated freelance marketplace with integrated Stripe payments, student-focused onboarding, and a clean UX for posting, discovery, and transactions.",
+"Built a dedicated freelance marketplace with Stripe-based checkout infrastructure, student-focused onboarding, and a clean UX for posting, discovery, and transactions.",
       outcome:
         "Secured $6K in non-dilutive funding, launched live payments, and onboarded early users actively posting and completing gigs.",
       role:

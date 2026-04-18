@@ -41,14 +41,21 @@ type Project = {
   };
 };
 const stickies: Sticky[] = [
-  { id: 1, label: "0 → 1 Builder", note: "shipping real products", bg: "#F6F4EF", rotate: "-2.5deg" },
-  { id: 2, label: "Data Systems", note: "5K+ events/min pipelines", bg: "#EEF2FF", rotate: "2deg" },
-  { id: 3, label: "AI Workflows", note: "LLMs + agentic systems", bg: "#ECFDF5", rotate: "-1.5deg" },
-  { id: 4, label: "Full Stack", note: "APIs to UI", bg: "#FFF7ED", rotate: "2.5deg" },
-  { id: 5, label: "Startups", note: "GigsWall & Fruition", bg: "#F6F4EF", rotate: "-2deg" },
-  { id: 6, label: "Scale Mindset", note: "latency, infra, throughput", bg: "#EEF2FF", rotate: "1.5deg" },
-  { id: 7, label: "Product Thinking", note: "user → system → outcome", bg: "#ECFDF5", rotate: "-1deg" },
-  { id: 8, label: "Matcha", note: "oat milk always", bg: "#FFF7ED", rotate: "2deg" },
+  { id: 1, label: "0 → 1 Builder", note: "from idea to launch", bg: "#F6F4EF", rotate: "-2.5deg" },
+
+  { id: 2, label: "Data Driven", note: "systems that actually scale", bg: "#EEF2FF", rotate: "2deg" },
+
+  { id: 3, label: "AI Native", note: "LLMs, agents, automation", bg: "#ECFDF5", rotate: "-1.5deg" },
+
+  { id: 4, label: "Full Stack", note: "backend pain, frontend joy", bg: "#FFF7ED", rotate: "2.5deg" },
+
+  { id: 5, label: "Startup Delusion", note: "actually shipping tho", bg: "#F6F4EF", rotate: "-2deg" },
+
+  { id: 6, label: "Fast Mode", note: "slow apps offend me", bg: "#EEF2FF", rotate: "1.5deg" },
+
+  { id: 7, label: "User Detective", note: "why would they click that?", bg: "#ECFDF5", rotate: "-1deg" },
+
+  { id: 8, label: "Matcha Powered", note: "99% leaves, 1% ambition", bg: "#FFF7ED", rotate: "2deg" },
 ];
 
 const skills = [
@@ -66,16 +73,17 @@ const projects: Project[] = [
     accent: "#22c55e",
     badge: "Founder",
     tech: ["Next.js", "Stripe", "PostgreSQL"],
-    highlights: ["Live Users", "Payments Integrated"],
+    highlights: ["Live Users", "Stripe Built"],
     status: "live",
     image: "/projects/gigswall.png",
     link: "https://gigswall.com",
     description: "Student-first freelance marketplace with live payments and active users.",
     featured: true,
-    cred: [
-      { label: "Live platform", type: "product" },
-  { label: "$6K grant", type: "funding" },
-  { label: "50+ gigs posted", type: "product" }
+cred: [
+  { label: "$6K Funding", type: "funding" },
+  { label: "$500 Winner", type: "award" },
+  { label: "KU Accelerator", type: "program" },
+  { label: "50+ Gigs Posted", type: "product" },
 ],
 
     details: {
@@ -144,11 +152,16 @@ const projects: Project[] = [
 "AI-powered platform for diagnosing and supporting color vision through real-world perception.",
     featured: true,
 cred: [
-  { label: "NSF i-Corps", type: "program" },
-  { label: "Booth Innovate2Market", type: "program" },
-  { label: "Microsoft Pitch", type: "award" },
-  { label: "Nucleate Activate", type: "program" },
-],
+
+    { label: "$5K NSF i-Corps", type: "funding" },
+
+    { label: "$1K Booth I2M", type: "funding" },
+
+    { label: "Microsoft Pitch", type: "award" },
+
+    { label: "Nucleate Activate", type: "program" },
+
+  ],
 
     details: {
       problem:
@@ -209,7 +222,7 @@ cred: [
     highlights: ["AI Reflections", "Mood Tracking", "Clean UX"],
     status: "live",
     image: "/projects/innerspace.png",
-    link: "https://innerspace.app",
+    link: "https://innerspaceai.netlify.app/",
     description: "AI-powered journaling and reflection system designed to help users think clearly, track emotions, and build self-awareness.",
     details: {
       problem: "Most journaling tools are passive — they store thoughts but don't help users process, reflect, or gain insights from them.",
@@ -228,7 +241,7 @@ cred: [
     highlights: ["Personal Project"],
     status: "live",
     image: "/projects/habitcheck.png",
-    link: "/projects/habitcheck",
+    link: "https://www.habitcheck.life",
     description: "Minimal habit tracking system focused on consistency.",
     details: {
       problem: "Existing habit apps are bloated with gamification and social features that distract from the core loop: did you do the thing today?",
@@ -401,11 +414,12 @@ export default function HomePage() {
 
     <div className="featured-img-wrap">
   <Image
-    src={p.image}
-    alt={p.title}
-    fill
-    className="featured-img"
-  />
+  src={p.image}
+  alt={p.title}
+  fill
+  className="featured-img"
+  sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 33vw"
+/>
   <span className={`featured-status status-${p.status}`}>
     {p.status}
   </span>
