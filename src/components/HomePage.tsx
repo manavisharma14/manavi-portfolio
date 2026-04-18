@@ -73,8 +73,9 @@ const projects: Project[] = [
     description: "Student-first freelance marketplace with live payments and active users.",
     featured: true,
     cred: [
+      { label: "Live platform", type: "product" },
   { label: "$6K funding", type: "funding" },
-  { label: "Live platform", type: "product" },
+  { label: "50+ gigs posted", type: "product" }
 ],
 
     details: {
@@ -107,6 +108,8 @@ const projects: Project[] = [
     cred: [
   { label: "Waitlist users", type: "product" },
   { label: "Early access", type: "product" },
+    { label: "AI thinking system", type: "product" },
+
 ],
     details: {
       problem:
@@ -140,11 +143,12 @@ const projects: Project[] = [
     description:
 "AI-powered platform for diagnosing and supporting color vision through real-world perception.",
     featured: true,
-    cred: [
-      { label: "NSF i-Corps", type: "program" },
-      { label: "Chicago Booth", type: "program" },
-      { label: "Microsoft", type: "award" },
-    ],
+cred: [
+  { label: "NSF i-Corps", type: "program" },
+  { label: "Booth Innovate2Market", type: "program" },
+  { label: "Microsoft Pitch", type: "award" },
+  { label: "Nucleate Activate", type: "program" },
+],
 
     details: {
       problem:
@@ -625,6 +629,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <p className="footer">
+  © 2026 Manavi Sharma
+</p>
 
       {/* floating preview */}
       {activePreview && (
@@ -1535,6 +1543,15 @@ export default function HomePage() {
           .contact-inner { grid-template-columns: 1fr; }
           .skills-inner { grid-template-columns: repeat(3, 1fr); }
         }
+
+        .footer {
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  border-top: 1px solid #eee;
+  background: #fafaf8;
+}
         @media (max-width: 640px) {
           .hero { padding-top: 52px; }
           .hero-left h1 { font-size: 2.6rem; }
