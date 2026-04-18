@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useCallback, type CSSProperties } from "react";
 import { LuMail } from "react-icons/lu";   // lucide-style
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import Link from "next/link";
 /* ---------------- TYPES ---------------- */
 type Sticky = {
   id: number;
@@ -15,6 +17,7 @@ type Sticky = {
 
 type Project = {
   title: string;
+  slug: string;
   tag: string;
   accent: string;
   tech: string[];
@@ -24,6 +27,12 @@ type Project = {
   link: string;
   description: string;
   featured?: boolean;
+  cred?: { label: string; type?: "award" | "funding" | "program" | "product" }[];
+
+  badge?: "Founder" | "Co-founder" | "Founding member"; // 👈 ADD THIS
+
+  proof?: string; // 👈 OPTIONAL (for 1-line credibility like "150+ users")
+
   details?: {
     problem: string;
     solution: string;
@@ -31,7 +40,6 @@ type Project = {
     role: string;
   };
 };
-
 const stickies: Sticky[] = [
   { id: 1, label: "0 → 1 Builder", note: "shipping real products", bg: "#F6F4EF", rotate: "-2.5deg" },
   { id: 2, label: "Data Systems", note: "5K+ events/min pipelines", bg: "#EEF2FF", rotate: "2deg" },
@@ -53,8 +61,10 @@ const skills = [
 const projects: Project[] = [
   {
     title: "GigsWall",
+    slug: "gigswall",
     tag: "freelance",
     accent: "#22c55e",
+    badge: "Founder",
     tech: ["Next.js", "Stripe", "PostgreSQL"],
     highlights: ["Live Users", "Payments Integrated"],
     status: "live",
@@ -62,11 +72,31 @@ const projects: Project[] = [
     link: "https://gigswall.com",
     description: "Student-first freelance marketplace with live payments and active users.",
     featured: true,
+    cred: [
+  { label: "$6K funding", type: "funding" },
+  { label: "Live platform", type: "product" },
+],
+
+    details: {
+      problem:
+        "Student freelancers lack a trusted, structured platform to find work. Existing marketplaces are saturated, generic, and not tailored to student workflows or trust mechanisms.",
+
+      solution:
+        "Built a dedicated freelance marketplace with integrated Stripe payments, student-focused onboarding, and a clean UX for posting, discovery, and transactions.",
+
+      outcome:
+        "Secured $6K in non-dilutive funding, launched live payments, and onboarded early users actively posting and completing gigs.",
+
+      role:
+        "Founder — led product, full-stack development (Next.js, PostgreSQL), payments integration, and go-to-market.",
+    },
   },
   {
     title: "Fruition",
+    slug: "fruition",
     tag: "product",
     accent: "#f59e0b",
+    badge: "Founding member",
     tech: ["Next.js", "AI APIs"],
     highlights: ["Waitlist", "Early Access"],
     status: "beta",
@@ -74,57 +104,65 @@ const projects: Project[] = [
     link: "https://www.fruitionunlocked.com/",
     description: "AI-powered thinking system helping users structure decisions and reflection.",
     featured: true,
-  },
-{
-  title: "BeyondColor",
-  tag: "ai",
-  accent: "#6366f1",
-  tech: ["Python", "OpenCV", "TensorFlow"],
-  highlights: [
-    "NSF i-Corps",
-    "Chicago Booth (I2M)",
-    "Microsoft Pitch"
-  ],
-  status: "beta",
-  image: "/projects/beyondcolor.png",
-  link: "https://beyondcolor.app",
-  description:
-    "AI-powered accessibility platform rethinking how color vision is diagnosed and supported through real-world perception, not just static tests.",
-  featured: true,
-
-  details: {
-    problem:
-      "Millions live with color vision deficiency, yet current tools rely on static tests that fail to reflect real-world color perception or functional ability.",
-
-    solution:
-      "Built an AI-driven platform combining computer vision and perceptual modeling to assess color vision dynamically and generate personalized correction and accessibility insights.",
-
-    outcome:
-      "Selected for NSF i-Corps and Chicago Booth’s Innovate2Market program. Conducted a clinical study validating approach and presented at Microsoft Chicago through Butter x The AI Collective.",
-
-    role:
-      "Co-founder — led ML and computer vision development, and contributed across full-stack engineering and clinical validation.",
-  },
-},
-  {
-    title: "HabitCheck",
-    tag: "product",
-    accent: "#84cc16",
-    tech: ["Next.js", "PostgreSQL"],
-    highlights: ["Personal Project"],
-    status: "beta",
-    image: "/projects/habitcheck.png",
-    link: "/projects/habitcheck",
-    description: "Minimal habit tracking system focused on consistency.",
+    cred: [
+  { label: "Waitlist users", type: "product" },
+  { label: "Early access", type: "product" },
+],
     details: {
-      problem: "Existing habit apps are bloated with gamification and social features that distract from the core loop: did you do the thing today?",
-      solution: "Stripped everything back to a single daily check-in grid per habit. Built with Next.js and PostgreSQL, with a clean weekly heatmap and streak counter as the only metrics that matter.",
-      outcome: "Personal daily driver. Maintains a 90%+ completion rate for tracked habits. Planning a public launch.",
-      role: "Solo — product design, frontend, backend, database schema.",
+      problem:
+        "Most tools capture thoughts but don’t help users structure decisions or think clearly through complex problems.",
+
+      solution:
+        "Developed an AI-driven system that guides users through structured thinking workflows, combining prompts, reflection loops, and decision frameworks.",
+
+      outcome:
+        "Built early access product with waitlist users and initial validation of structured thinking workflows.",
+
+      role:
+        "Founding member — contributed to product development, frontend engineering, and AI workflow design.",
+    },
+  },
+  {
+    title: "BeyondColor",
+    slug: "beyondcolor",
+    tag: "ai",
+    accent: "#6366f1",
+    badge: "Co-founder",
+    tech: ["Python", "OpenCV", "TensorFlow"],
+    highlights: [
+      "NSF i-Corps",
+      "Chicago Booth (I2M)",
+      "Microsoft Pitch"
+    ],
+    status: "beta",
+    image: "/projects/beyondcolor.png",
+    link: "https://beyondcolor.app",
+    description:
+"AI-powered platform for diagnosing and supporting color vision through real-world perception.",
+    featured: true,
+    cred: [
+      { label: "NSF i-Corps", type: "program" },
+      { label: "Chicago Booth", type: "program" },
+      { label: "Microsoft", type: "award" },
+    ],
+
+    details: {
+      problem:
+        "Millions live with color vision deficiency, yet current tools rely on static tests that fail to reflect real-world color perception or functional ability.",
+
+      solution:
+        "Built an AI-driven platform combining computer vision and perceptual modeling to assess color vision dynamically and generate personalized correction and accessibility insights.",
+
+      outcome:
+        "Selected for NSF i-Corps and Chicago Booth’s Innovate2Market program. Conducted a clinical study validating approach and presented at Microsoft Chicago through Butter x The AI Collective.",
+
+      role:
+        "Co-founder — led ML and computer vision development, and contributed across full-stack engineering and clinical validation.",
     },
   },
   {
     title: "CircleConnect",
+    slug: "circleconnect",
     tag: "product",
     accent: "#3b82f6",
     tech: ["Next.js", "Firebase", "Auth"],
@@ -142,11 +180,12 @@ const projects: Project[] = [
   },
   {
     title: "SwapCampus",
+    slug: "swapcampus",
     tag: "product",
     accent: "#2563eb",
     tech: ["Next.js", "MongoDB", "JWT"],
     highlights: ["Campus-only Auth", "Moderated Listings"],
-    status: "live",
+    status: "beta",
     image: "/projects/swapcampus.png",
     link: "https://swapcampus.vercel.app/",
     description: "Campus-only marketplace with identity-based access control.",
@@ -159,11 +198,12 @@ const projects: Project[] = [
   },
   {
     title: "InnerSpace",
+    slug: "innerspace",
     tag: "ai",
     accent: "#a78bfa",
     tech: ["Next.js", "FastAPI", "PostgreSQL", "LLMs"],
     highlights: ["AI Reflections", "Mood Tracking", "Clean UX"],
-    status: "beta",
+    status: "live",
     image: "/projects/innerspace.png",
     link: "https://innerspace.app",
     description: "AI-powered journaling and reflection system designed to help users think clearly, track emotions, and build self-awareness.",
@@ -172,6 +212,25 @@ const projects: Project[] = [
       solution: "Built an AI-powered reflection system that guides users through structured prompts, analyzes sentiment and patterns, and provides weekly insights without overwhelming the experience.",
       outcome: "Created a calm, minimal product with strong early engagement. Users consistently return for weekly reflections and habit tracking.",
       role: "Full-stack builder — designed UX, built frontend in Next.js, backend with FastAPI, and integrated LLM-based reflection workflows.",
+    },
+  },
+
+  {
+    title: "HabitCheck",
+    slug: "habitcheck",
+    tag: "product",
+    accent: "#84cc16",
+    tech: ["Next.js", "PostgreSQL"],
+    highlights: ["Personal Project"],
+    status: "live",
+    image: "/projects/habitcheck.png",
+    link: "/projects/habitcheck",
+    description: "Minimal habit tracking system focused on consistency.",
+    details: {
+      problem: "Existing habit apps are bloated with gamification and social features that distract from the core loop: did you do the thing today?",
+      solution: "Stripped everything back to a single daily check-in grid per habit. Built with Next.js and PostgreSQL, with a clean weekly heatmap and streak counter as the only metrics that matter.",
+      outcome: "Personal daily driver. Maintains a 90%+ completion rate for tracked habits. Planning a public launch.",
+      role: "Solo — product design, frontend, backend, database schema.",
     },
   },
 ];
@@ -189,7 +248,10 @@ export default function HomePage() {
     setCursor({ x: e.clientX, y: e.clientY });
   }, []);
 
-  const activePreview = hoveredProject !== null ? projects[hoveredProject].image : null;
+  const activePreview =
+  hoveredProject !== null && hoveredProject >= 0
+    ? projects[hoveredProject].image
+    : null;
   const indexedProjects = projects.map((p, idx) => ({ ...p, idx }));
   const featuredProjects = indexedProjects.filter((p) => p.featured);
   const otherProjects = indexedProjects.filter((p) => !p.featured);
@@ -210,12 +272,12 @@ export default function HomePage() {
             </span>
 
             <h1>
-              engineer,
-              <br />
-              <em>builder of</em>
-              <br />
-              real things.
-            </h1>
+  building real products
+  <br />
+  with <em>ai, data,</em>
+  <br />
+  & users.
+</h1>
 
             <p className="hero-sub">
               I build products at the intersection of AI, data, and great UX —
@@ -228,7 +290,7 @@ export default function HomePage() {
                 <span className="stat-label">products shipped</span>
               </div>
               <div className="stat-divider" />
-            
+
               <div className="stat-divider" />
               <div className="stat">
                 <span className="stat-num">3 </span>
@@ -283,85 +345,102 @@ export default function HomePage() {
       </section>
 
       {/* ── SKILLS STRIP ── */}
-{/* ── SKILLS TABLE ── */}
-{/* ── SKILLS ── */}
-<section className="skills-section">
-  <div className="skills-inner">
-    <span className="skills-eyebrow">stack</span>
-    <div className="skills-grid">
-      {[
-        { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind"], accent: "#3b82f6", num: "01" },
-        { category: "Backend", items: ["Node.js", "PostgreSQL", "MongoDB", "REST APIs"], accent: "#22c55e", num: "02" },
-        { category: "AI / Data", items: ["LLMs", "Python", "TensorFlow", "Pipelines"], accent: "#a78bfa", num: "03" },
-        { category: "Infra", items: ["Vercel", "Stripe", "Firebase", "AWS"], accent: "#f59e0b", num: "04" },
-      ].map((s) => (
-        <div key={s.category} className="skill-card" style={{ "--accent": s.accent } as CSSProperties}>
-          <div className="skill-card-top">
-            <span className="skill-cat">{s.category}</span>
-            <span className="skill-num">{s.num}</span>
-          </div>
-          <div className="skill-card-divider" />
-          <div className="skill-items">
-            {s.items.map((item) => (
-              <div key={item} className="skill-item">
-                <span className="skill-dot" />
-                {item}
+      {/* ── SKILLS TABLE ── */}
+      {/* ── SKILLS ── */}
+      <section className="skills-section">
+        <div className="skills-inner">
+          <span className="skills-eyebrow">stack</span>
+          <div className="skills-grid">
+            {[
+              { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind"], accent: "#3b82f6", num: "01" },
+              { category: "Backend", items: ["Node.js", "PostgreSQL", "MongoDB", "REST APIs"], accent: "#22c55e", num: "02" },
+              { category: "AI / Data", items: ["LLMs", "Python", "TensorFlow", "Pipelines"], accent: "#a78bfa", num: "03" },
+              { category: "Infra", items: ["Vercel", "Stripe", "Firebase", "AWS"], accent: "#f59e0b", num: "04" },
+            ].map((s) => (
+              <div key={s.category} className="skill-card" style={{ "--accent": s.accent } as CSSProperties}>
+                <div className="skill-card-top">
+                  <span className="skill-cat">{s.category}</span>
+                  <span className="skill-num">{s.num}</span>
+                </div>
+                <div className="skill-card-divider" />
+                <div className="skill-items">
+                  {s.items.map((item) => (
+                    <div key={item} className="skill-item">
+                      <span className="skill-dot" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
       {/* ── FEATURED (STARTUPS) ── */}
       <section className="featured-section" id="projects">
         <div className="section-inner">
           <div className="section-header">
             <span className="eyebrow">featured work</span>
             <h2 className="section-title">Startups</h2>
-            <p className="section-sub">Products I founded and shipped — from zero to live users and real traction.</p>
-          </div>
+            <p className="section-sub">
+              Products I’ve built across startups — from zero to live users and real traction.
+            </p>          </div>
 
           <div className="featured-grid">
             {featuredProjects.map((p, i) => (
-              <a
-                key={i}
-                href={p.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="featured-card"
-                style={{ "--accent": p.accent } as CSSProperties}
-              >
-                <div className="featured-img-wrap">
-                  <img src={p.image} alt={p.title} className="featured-img" />
-                  <span className={`featured-status status-${p.status}`}>{p.status}</span>
-                </div>
-                <div className="featured-body">
-                  <div className="featured-title-row">
-                    <span className="featured-title">{p.title}</span>
-                    <span className="founder-badge">Founder</span>
-                  </div>
-                  <p className="featured-desc">{p.description}</p>
-                  <div className="featured-chips">
-                    {p.tech.map((t, j) => (
-                      <span key={j} className="chip tech">{t}</span>
-                    ))}
-                  </div>
-                  <div className="featured-footer-row">
-                    <span className="featured-cta">Visit site ↗</span>
-                    {p.details && (
-                      <button
-                        className="learn-more-btn"
-                        style={{ "--accent": p.accent } as CSSProperties}
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setActiveModal(p); }}
-                      >
-                        Learn more
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </a>
+              <Link
+  key={i}
+  href={`/projects/${p.slug}`}
+  className="featured-card"
+  style={{ "--accent": p.accent } as CSSProperties}
+>
+
+    <div className="featured-img-wrap">
+  <Image
+    src={p.image}
+    alt={p.title}
+    fill
+    className="featured-img"
+  />
+  <span className={`featured-status status-${p.status}`}>
+    {p.status}
+  </span>
+
+  </div>
+
+  <div className="featured-body">
+    <div className="featured-title-row">
+      <span className="featured-title">{p.title}</span>
+      {p.badge && <span className="founder-badge">{p.badge}</span>}
+    </div>
+
+    <p className="featured-desc">{p.description}</p>
+
+    {p.cred && (
+      <div className="featured-chips">
+        {p.cred.map((c, i) => (
+          <span key={i} className={`chip cred cred-${c.type || "default"}`}>
+            {c.label}
+          </span>
+        ))}
+      </div>
+    )}
+
+    {p.proof && <span className="project-proof">{p.proof}</span>}
+
+    {/* <div className="featured-chips">
+      {p.tech.map((t, j) => (
+        <span key={j} className="chip tech">{t}</span>
+      ))}
+    </div> */}
+
+    <div className="featured-footer-row">
+      <span className="featured-learn-btn">
+        Learn more →
+      </span>
+    </div>
+  </div>
+</Link>
             ))}
           </div>
         </div>
@@ -378,16 +457,13 @@ export default function HomePage() {
 
           <div className="proj-list">
             {otherProjects.map((p, i) => (
-              <a
-                key={i}
-                href={p.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="proj-row"
-                style={{ "--accent": p.accent } as CSSProperties}
-                onMouseEnter={() =>
-                  setHoveredProject(projects.findIndex((proj) => proj.title === p.title))
-                }
+              <div
+  key={i}
+  className="proj-row"
+  style={{ "--accent": p.accent } as CSSProperties}
+  onClick={() => setActiveModal(p)}
+             
+                onMouseEnter={() => setHoveredProject(p.idx)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <span className="proj-index">{String(i + 1).padStart(2, "0")}</span>
@@ -410,16 +486,31 @@ export default function HomePage() {
                 </div>
 
                 <div className="proj-right-actions">
-                  <button
-                    className="learn-more-btn"
-                    style={{ "--accent": p.accent } as CSSProperties}
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setActiveModal(p); }}
-                  >
-                    Learn more
-                  </button>
-                  <span className="proj-arrow">↗</span>
-                </div>
-              </a>
+  {/* Learn more (modal) */}
+  <button
+    className="featured-learn-btn"
+    style={{ "--accent": p.accent } as CSSProperties}
+    onClick={(e) => {
+      e.stopPropagation();
+      setActiveModal(p);
+    }}
+  >
+    Learn more
+  </button>
+
+  {/* Visit site (external) */}
+  <a
+    href={p.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="visit-btn"
+    style={{ "--accent": p.accent } as CSSProperties}
+    onClick={(e) => e.stopPropagation()}
+  >
+    Visit ↗
+  </a>
+</div>
+              </div>
             ))}
           </div>
         </div>
@@ -489,22 +580,32 @@ export default function HomePage() {
             <p className="contact-sub">
               Have an idea, a problem, or just want to connect {"I'm "}always down to chat.
             </p>
-<div className="contact-links">
-  <a href="mailto:manavisharma14@gmail.com" className="contact-link">
-    <LuMail size={16} />
-    manavisharma14@gmail.com
-  </a>
+            <div className="contact-links">
+              <a href="mailto:manavisharma14@gmail.com" className="contact-link">
+                <LuMail size={16} />
+                manavisharma14@gmail.com
+              </a>
 
-  <a href="https://github.com/manavisharma14" className="contact-link" target="_blank">
-    <FaGithub size={16} />
-    github.com/manavisharma14
-  </a>
+              <a href="https://github.com/manavisharma14" className="contact-link" target="_blank">
+                <FaGithub size={16} />
+                github.com/manavisharma14
+              </a>
 
-  <a href="https://www.linkedin.com/in/manavi-sharma-521014222/" className="contact-link" target="_blank">
-    <FaLinkedin size={16} />
-    linkedin.com/in/manavi-sharma
-  </a>
-</div>
+              <a href="https://www.linkedin.com/in/manavi-sharma-521014222/" className="contact-link" target="_blank">
+                <FaLinkedin size={16} />
+                linkedin.com/in/manavi-sharma
+              </a>
+
+              <a
+                href="https://twitter.com/manavisharma06"
+                className="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTwitter size={16} />
+                twitter.com/manavisharma06
+              </a>
+            </div>
           </div>
 
           <div className="terminal-card">
@@ -750,6 +851,33 @@ export default function HomePage() {
           font-weight: 700;
           color: #999;
         }
+
+
+        .featured-learn-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: #fff;
+
+  border: none;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: all 0.2s ease;
+}
+
+.featured-learn-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  opacity: 0.9;
+}
+
         .photo-name {
           margin-top: 10px;
           font-size: 0.8rem;
@@ -759,6 +887,37 @@ export default function HomePage() {
         }
         .spark { color: #f59e0b; }
 
+.chip.cred {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+/* PROGRAMS (NSF, Booth) */
+.cred-program {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4f46e5;
+}
+
+/* FUNDING */
+.cred-funding {
+  background: rgba(34, 197, 94, 0.08);
+  color: #15803d;
+}
+
+/* AWARDS / BIG NAMES */
+.cred-award {
+  background: rgba(245, 158, 11, 0.1);
+  color: #b45309;
+}
+
+/* PRODUCT / TRACTION */
+.cred-product {
+  background: rgba(59, 130, 246, 0.08);
+  color: #2563eb;
+}
         /* ── SKILLS TABLE ── */
 .skills-table {
   padding: 48px 24px; /* tighter */
@@ -971,6 +1130,7 @@ export default function HomePage() {
         }
         .featured-card {
           display: flex;
+          cursor: pointer;
           flex-direction: column;
           border-radius: 18px;
           border: 1px solid #eee;
@@ -1033,7 +1193,7 @@ export default function HomePage() {
         .featured-footer-row {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-end;
           margin-top: 4px;
         }
 
@@ -1064,6 +1224,14 @@ export default function HomePage() {
           opacity: 0.2;
           transition: opacity 0.25s ease, height 0.25s ease, top 0.25s ease;
         }
+
+
+        .project-proof {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 4px;
+}
         .proj-row:hover::before { opacity: 1; height: 70%; top: 15%; }
         .proj-row:hover {
           background: #fff;
