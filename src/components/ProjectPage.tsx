@@ -2,6 +2,8 @@
 
 import { type CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
 
 /* ── SHARED TYPES (copy from your types file or shared lib) ── */
 type Cred = {
@@ -146,7 +148,7 @@ function RelatedCard({ p, accent }: { p: Project; accent: string }) {
       style={{ "--accent": p.accent } as CSSProperties}
     >
       <div className="related-img-wrap">
-        <img src={p.image} alt={p.title} className="related-img" />
+        <Image src={p.image} alt={p.title} className="related-img" />
       </div>
       <div className="related-body">
         <div className="related-title-row">

@@ -5,6 +5,7 @@ import { useState, useCallback, type CSSProperties } from "react";
 import { LuMail } from "react-icons/lu";   // lucide-style
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { FaPenNib } from "react-icons/fa";
 import Link from "next/link";
 /* ---------------- TYPES ---------------- */
 type Sticky = {
@@ -27,7 +28,7 @@ type Project = {
   link: string;
   description: string;
   featured?: boolean;
-  cred?: { label: string; type?: "award" | "funding" | "program" | "product" }[];
+  cred?: { label: string; type?: "award" | "funding" | "program" | "product"}[];
 
   badge?: "Founder" | "Co-founder" | "Founding member"; // 👈 ADD THIS
 
@@ -55,15 +56,9 @@ const stickies: Sticky[] = [
 
   { id: 7, label: "User Detective", note: "why would they click that?", bg: "#ECFDF5", rotate: "-1deg" },
 
-  { id: 8, label: "Matcha Powered", note: "99% leaves, 1% ambition", bg: "#FFF7ED", rotate: "2deg" },
+{ id: 8, label: "Always Shipping", note: "ideas don’t count", bg: "#FFF7ED", rotate: "2deg" },
 ];
 
-const skills = [
-  { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind"] },
-  { category: "Backend", items: ["Node.js", "PostgreSQL", "MongoDB", "REST APIs"] },
-  { category: "AI / Data", items: ["LLMs", "Python", "TensorFlow", "Pipelines"] },
-  { category: "Infra", items: ["Vercel", "Stripe", "Firebase", "AWS"] },
-];
 
 const projects: Project[] = [
   {
@@ -233,23 +228,62 @@ cred: [
   },
 
   {
-    title: "HabitCheck",
-    slug: "habitcheck",
-    tag: "product",
-    accent: "#84cc16",
-    tech: ["Next.js", "PostgreSQL"],
-    highlights: ["Personal Project"],
-    status: "live",
-    image: "/projects/habitcheck.png",
-    link: "https://www.habitcheck.life",
-    description: "Minimal habit tracking system focused on consistency.",
-    details: {
-      problem: "Existing habit apps are bloated with gamification and social features that distract from the core loop: did you do the thing today?",
-      solution: "Stripped everything back to a single daily check-in grid per habit. Built with Next.js and PostgreSQL, with a clean weekly heatmap and streak counter as the only metrics that matter.",
-      outcome: "Personal daily driver. Maintains a 90%+ completion rate for tracked habits. Planning a public launch.",
-      role: "Solo — product design, frontend, backend, database schema.",
-    },
+  title: "HabitCheck",
+  slug: "habitcheck",
+  tag: "product",
+  accent: "#84cc16",
+  tech: ["Next.js", "PostgreSQL"],
+  highlights: ["Live Product", "Daily Use"],
+  status: "live",
+  image: "/projects/habitcheck.png",
+  link: "https://www.habitcheck.life",
+  description: "Minimal habit tracking system built for consistency and long-term discipline.",
+  cred: [
+    { label: "Live Platform", type: "product" },
+    { label: "Built & Shipped", type: "product" },
+  ],
+  details: {
+    problem:
+      "Most habit apps are bloated with gamification, notifications, and social layers that distract from the only question that matters: did you do it today?",
+
+    solution:
+      "Built a clean habit tracking system centered around a simple daily check-in flow, weekly heatmaps, streak visibility, and frictionless progress tracking.",
+
+    outcome:
+      "Launched publicly at habitcheck.life and used consistently as a lightweight accountability system with strong repeat usage.",
+
+    role:
+      "Solo builder — designed product experience, built frontend in Next.js, backend systems, and PostgreSQL data architecture.",
   },
+},
+{
+  title: "Manavi Writes",
+  slug: "manaviwrites",
+  tag: "media",
+  accent: "#ec4899",
+  badge: "Founder",
+  tech: ["Next.js", "SEO", "Content"],
+  highlights: ["Personal Brand", "Published Essays"],
+  status: "live",
+  image: "/projects/manaviwrites.png",
+  link: "https://manaviwrites.com",
+  description: "Writing platform sharing essays on startups, growth, technology, and ideas.",
+  featured: false,
+  cred: [
+    { label: "Live Blog", type: "product" },
+    { label: "Original Writing", type: "award" },
+  ],
+  details: {
+    problem:
+      "Most online writing lacks depth or originality and is scattered across platforms.",
+    solution:
+      "Built an independent publishing platform to share essays, startup insights, product thinking, and personal reflections.",
+    outcome:
+      "Established a personal brand platform and growing archive of original long-form writing.",
+    role:
+      "Founder — writing, design, frontend development, SEO, and publishing.",
+  },
+}
 ];
 
 type StickyStyle = CSSProperties & { "--bg": string; "--rot": string };
@@ -303,7 +337,7 @@ export default function HomePage() {
 
             <div className="hero-stats">
               <div className="stat">
-                <span className="stat-num">6+</span>
+                <span className="stat-num">8+</span>
                 <span className="stat-label">products shipped</span>
               </div>
               <div className="stat-divider" />
@@ -371,7 +405,7 @@ export default function HomePage() {
             {[
               { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind"], accent: "#3b82f6", num: "01" },
               { category: "Backend", items: ["Node.js", "PostgreSQL", "MongoDB", "REST APIs"], accent: "#22c55e", num: "02" },
-              { category: "AI / Data", items: ["LLMs", "Python", "TensorFlow", "Pipelines"], accent: "#a78bfa", num: "03" },
+              { category: "AI / Data", items: ["LLMs", "LangChain", "LangGraph", "RAG"], accent: "#a78bfa", num: "03" },
               { category: "Infra", items: ["Vercel", "Stripe", "Firebase", "AWS"], accent: "#f59e0b", num: "04" },
             ].map((s) => (
               <div key={s.category} className="skill-card" style={{ "--accent": s.accent } as CSSProperties}>
@@ -623,6 +657,16 @@ export default function HomePage() {
                 <FaTwitter size={16} />
                 twitter.com/manavisharma06
               </a>
+
+              <a
+  href="https://manaviwrites.com"
+  className="contact-link"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaPenNib size={16} />
+  manaviwrites.com
+</a>
             </div>
           </div>
 
@@ -1452,6 +1496,7 @@ export default function HomePage() {
         .badge-freelance { background: #fef3c7; color: #92400e; }
         .badge-product   { background: #fde68a; color: #a16207; }
         .badge-ai        { background: #e0e7ff; color: #3730a3; }
+        .badge-media     { background: #fce7f3; color: #be185d; }
         .proj-status {
           font-size: 10px;
           font-weight: 600;
