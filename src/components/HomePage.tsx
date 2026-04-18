@@ -74,7 +74,7 @@ const projects: Project[] = [
     featured: true,
     cred: [
       { label: "Live platform", type: "product" },
-  { label: "$6K funding", type: "funding" },
+  { label: "$6K grant", type: "funding" },
   { label: "50+ gigs posted", type: "product" }
 ],
 
