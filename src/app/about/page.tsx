@@ -174,17 +174,7 @@ export default function HomePage() {
 
   return (
     <main onMouseMove={handleMouseMove}>
-      {/* ── NAV ── */}
-      <nav className="nav">
-        <div className="nav-inner">
-          <span className="nav-logo">MS<span className="nav-logo-dot">.</span></span>
-          <div className="nav-links">
-            <a href="#projects" className="nav-link">work</a>
-            <a href="#contact" className="nav-link">contact</a>
-            <a href="/resume.pdf" className="nav-cta">résumé ↗</a>
-          </div>
-        </div>
-      </nav>
+
 
       {/* ── HERO ── */}
       <section className="hero">

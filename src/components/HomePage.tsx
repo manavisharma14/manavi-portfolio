@@ -134,7 +134,7 @@ cred: [
     tag: "ai",
     accent: "#6366f1",
     badge: "Co-founder",
-    tech: ["Python", "OpenCV", "TensorFlow"],
+    tech: ["AI", "Computer Vision", "Healthcare", "Product"],
     highlights: [
       "NSF i-Corps",
       "Chicago Booth (I2M)",
@@ -309,6 +309,9 @@ export default function HomePage() {
 
   return (
     <main onMouseMove={handleMouseMove}>
+
+
+
 
       {/* ── HERO ── */}
       <section className="hero">
@@ -624,7 +627,7 @@ export default function HomePage() {
       )}
 
       {/* ── CONTACT ── */}
-      <section className="contact-section">
+      <section className="contact-section" id="contact">
         <div className="contact-inner">
           <div className="contact-left">
             <span className="eyebrow">contact</span>
@@ -714,6 +717,8 @@ export default function HomePage() {
           -webkit-font-smoothing: antialiased;
         }
         a { text-decoration: none; color: inherit; }
+
+        
 
         /* ── HERO ── */
         .hero {

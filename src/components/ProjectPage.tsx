@@ -85,35 +85,46 @@ const projects: Project[] = [
         "Founding member — contributed to product development, frontend engineering, and AI workflow design.",
     },
   },
-  {
-    title: "BeyondColor",
-    tag: "ai",
-    accent: "#6366f1",
-    badge: "Co-founder",
-    tech: ["Python", "OpenCV", "TensorFlow"],
-    highlights: ["NSF i-Corps", "Chicago Booth (I2M)", "Microsoft Pitch"],
-    status: "beta",
-    image: "/projects/beyondcolor.png",
-    link: "https://beyondcolor.app",
-    description:
-      "AI-powered accessibility platform rethinking how color vision is diagnosed and supported through real-world perception, not just static tests.",
-    featured: true,
-    cred: [
-      { label: "NSF i-Corps", type: "program" },
-      { label: "Chicago Booth", type: "program" },
-      { label: "Microsoft", type: "award" },
-    ],
-    details: {
-      problem:
-        "Millions live with color vision deficiency, yet current tools rely on static tests that fail to reflect real-world color perception or functional ability.",
-      solution:
-        "Built an AI-driven platform combining computer vision and perceptual modeling to assess color vision dynamically and generate personalized correction and accessibility insights.",
-      outcome:
-        "Selected for NSF i-Corps and Chicago Booth's Innovate2Market program. Conducted a clinical study validating approach and presented at Microsoft Chicago through Butter x The AI Collective.",
-      role:
-        "Co-founder — led ML and computer vision development, and contributed across full-stack engineering and clinical validation.",
-    },
+{
+  title: "BeyondColor",
+  tag: "healthtech",
+  accent: "#6366f1",
+  badge: "Co-founder",
+  tech: ["Next.js", "Computer Vision", "Healthcare", "Product"],
+  highlights: [
+    "$6K Non-Dilutive Funding",
+    "Chicago Booth I2M",
+    "Microsoft Pitch"
+  ],
+  status: "beta",
+  image: "/projects/beyondcolor.png",
+  link: "https://beyondcolor.app",
+  description:
+    "Funded digital health startup modernizing color vision screening through real-world perception and accessibility.",
+
+  featured: true,
+
+  cred: [
+    { label: "$5K NSF i-Corps", type: "funding" },
+    { label: "$1K Booth I2M", type: "funding" },
+    { label: "Microsoft Pitch", type: "award" },
+    { label: "Chicago Booth", type: "program" },
+  ],
+
+  details: {
+    problem:
+      "Traditional color vision tests rely on static charts that fail to reflect real-world perception, often leading to inaccurate screening outcomes.",
+
+    solution:
+      "Built a modern digital screening platform with interactive testing, accessibility-first UX, and future-ready adaptive analytics.",
+
+    outcome:
+      "Secured $6K in non-dilutive funding, presented at Microsoft Chicago, completed customer discovery including San Francisco startup ecosystem interviews, and validated market demand across healthcare and accessibility sectors.",
+
+    role:
+      "Co-founder — led product strategy, fundraising, customer discovery, partnerships, and product execution.",
   },
+}
 ];
 
 /* ── SECTION COMPONENT ── */
@@ -140,25 +151,33 @@ function DetailSection({
 }
 
 /* ── SINGLE PROJECT CARD (used in "other projects" strip) ── */
-function RelatedCard({ p, accent }: { p: Project; accent: string }) {
+function RelatedCard({ p }: { p: Project }) {
   return (
-    <a
+    <Link
       href={`/projects/${p.title.toLowerCase().replace(/\s/g, "-")}`}
       className="related-card"
       style={{ "--accent": p.accent } as CSSProperties}
     >
       <div className="related-img-wrap">
-        <Image src={p.image} alt={p.title} className="related-img" />
+        <Image
+          src={p.image}
+          alt={p.title}
+          fill
+          className="related-img"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
       </div>
+
       <div className="related-body">
         <div className="related-title-row">
           <span className="related-title">{p.title}</span>
           {p.badge && <span className="founder-badge">{p.badge}</span>}
         </div>
+
         <p className="related-desc">{p.description}</p>
         <span className="related-cta">View project ↗</span>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -177,19 +196,6 @@ export default function ProjectPage({ project }: { project?: Project }) {
 
   return (
     <main>
-      {/* ── NAV ── */}
-      <nav className="nav">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">
-  MS<span className="nav-logo-dot">.</span>
-</Link>
-          <div className="nav-links">
-            <Link href="/#projects" className="nav-link">work</Link>
-<Link href="/#contact" className="nav-link">contact</Link>
-            <a href="/resume.pdf" className="nav-cta">résumé ↗</a>
-          </div>
-        </div>
-      </nav>
 
       {/* ── HERO BLOCK ── */}
       <section className="proj-hero" style={{ "--accent": p.accent } as CSSProperties}>
@@ -240,7 +246,13 @@ export default function ProjectPage({ project }: { project?: Project }) {
         {/* hero image */}
         <div className="proj-hero-img-wrap">
           <div className="proj-hero-img-frame" style={{ "--accent": p.accent } as CSSProperties}>
-            <img src={p.image} alt={p.title} className="proj-hero-img" />
+            <Image
+  src={p.image}
+  alt={p.title}
+  fill
+  className="proj-hero-img"
+  sizes="(max-width: 900px) 100vw, 50vw"
+/>
           </div>
         </div>
       </section>
@@ -281,8 +293,10 @@ export default function ProjectPage({ project }: { project?: Project }) {
             </div>
             <div className="related-grid">
               {others.map((o) => (
-                <RelatedCard key={o.title} p={o} accent={o.accent} />
-              ))}
+
+  <RelatedCard key={o.title} p={o} />
+
+))}
             </div>
           </div>
         </section>
@@ -312,36 +326,7 @@ export default function ProjectPage({ project }: { project?: Project }) {
         }
         a { text-decoration: none; color: inherit; }
 
-        /* ── NAV ── */
-        .nav {
-          position: fixed;
-          top: 0; left: 0; right: 0;
-          z-index: 100;
-          padding: 0 24px;
-          background: rgba(255,255,255,0.88);
-          backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(240,237,230,0.8);
-        }
-        .nav-inner {
-          max-width: 1120px;
-          margin: 0 auto;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-        .nav-logo { font-size: 1rem; font-weight: 750; letter-spacing: -0.03em; color: #111; }
-        .nav-logo-dot { color: #f59e0b; }
-        .nav-links { display: flex; align-items: center; gap: 28px; }
-        .nav-link { font-size: 0.82rem; font-weight: 500; color: #888; transition: color 0.15s; }
-        .nav-link:hover { color: #111; }
-        .nav-cta {
-          font-size: 0.8rem; font-weight: 600;
-          padding: 6px 14px; border-radius: 8px;
-          background: #111; color: #fff;
-          transition: background 0.15s;
-        }
-        .nav-cta:hover { background: #333; }
+        
 
         /* ── HERO ── */
         .proj-hero {
@@ -449,14 +434,17 @@ export default function ProjectPage({ project }: { project?: Project }) {
         /* hero image */
         .proj-hero-img-wrap { display: flex; align-items: center; justify-content: center; }
         .proj-hero-img-frame {
-          width: 100%;
-          border-radius: 18px;
-          overflow: hidden;
-          border: 1px solid #eee;
-          box-shadow: 0 24px 72px rgba(0,0,0,0.1);
-          outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent);
-          outline-offset: 4px;
-        }
+  position: relative;
+  width: 100%;
+  height: 320px;   /* REQUIRED */
+  min-height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  box-shadow: 0 24px 72px rgba(0,0,0,0.1);
+  outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  outline-offset: 4px;
+}
         .proj-hero-img { width: 100%; height: 300px; object-fit: cover; display: block; background: #f4f2ed; }
 
         /* ── DETAIL SECTIONS ── */
@@ -574,7 +562,12 @@ export default function ProjectPage({ project }: { project?: Project }) {
           box-shadow: 0 24px 60px rgba(0,0,0,0.1);
           border-color: var(--accent);
         }
-        .related-img-wrap { height: 140px; background: #f4f2ed; overflow: hidden; }
+        .related-img-wrap {
+  position: relative;
+  height: 140px;
+  background: #f4f2ed;
+  overflow: hidden;
+}
         .related-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .related-card:hover .related-img { transform: scale(1.04); }
         .related-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; }

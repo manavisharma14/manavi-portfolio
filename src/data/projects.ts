@@ -76,35 +76,46 @@ export const projects: Project[] = [
         "Founding member — contributed to product development, frontend engineering, and AI workflow design.",
     },
   },
-  {
-    title: "BeyondColor",
-    tag: "ai",
-    accent: "#6366f1",
-    badge: "Co-founder",
-    tech: ["Python", "OpenCV", "TensorFlow"],
-    highlights: ["NSF i-Corps", "Chicago Booth (I2M)", "Microsoft Pitch"],
-    status: "beta",
-    image: "/projects/beyondcolor.png",
-    link: "https://beyondcolor.app",
-    description:
-      "AI-powered accessibility platform rethinking how color vision is diagnosed and supported through real-world perception, not just static tests.",
-    featured: true,
-    cred: [
-      { label: "NSF i-Corps", type: "program" },
-      { label: "Chicago Booth", type: "program" },
-      { label: "Microsoft", type: "award" },
-    ],
-    details: {
-      problem:
-        "Millions live with color vision deficiency, yet current tools rely on static tests that fail to reflect real-world color perception or functional ability.",
-      solution:
-        "Built an AI-driven platform combining computer vision and perceptual modeling to assess color vision dynamically and generate personalized correction and accessibility insights.",
-      outcome:
-        "Selected for NSF i-Corps and Chicago Booth's Innovate2Market program. Conducted a clinical study validating approach and presented at Microsoft Chicago through Butter x The AI Collective.",
-      role:
-        "Co-founder — led ML and computer vision development, and contributed across full-stack engineering and clinical validation.",
-    },
+ {
+  title: "BeyondColor",
+  tag: "healthtech",
+  accent: "#6366f1",
+  badge: "Co-founder",
+  tech: ["Next.js", "Computer Vision", "Healthcare", "Product"],
+  highlights: [
+    "$6K Non-Dilutive Funding",
+    "Chicago Booth I2M",
+    "Microsoft Pitch"
+  ],
+  status: "beta",
+  image: "/projects/beyondcolor.png",
+  link: "https://beyondcolor.app",
+  description:
+    "Funded digital health startup modernizing color vision screening through real-world perception and accessibility.",
+
+  featured: true,
+
+  cred: [
+    { label: "$5K NSF i-Corps", type: "funding" },
+    { label: "$1K Booth I2M", type: "funding" },
+    { label: "Microsoft Pitch", type: "award" },
+    { label: "Chicago Booth", type: "program" },
+  ],
+
+  details: {
+    problem:
+      "Traditional color vision tests rely on static charts that fail to reflect real-world perception, often leading to inaccurate screening outcomes.",
+
+    solution:
+      "Built a modern digital screening platform with interactive testing, accessibility-first UX, and future-ready adaptive analytics.",
+
+    outcome:
+      "Secured $6K in non-dilutive funding, presented at Microsoft Chicago, completed customer discovery including San Francisco startup ecosystem interviews, and validated market demand across healthcare and accessibility sectors.",
+
+    role:
+      "Co-founder — led product strategy, fundraising, customer discovery, partnerships, and product execution.",
   },
+},
   {
     title: "CircleConnect",
     tag: "product",

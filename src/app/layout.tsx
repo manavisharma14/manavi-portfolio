@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
 
 import "./globals.css";
 import { Bricolage_Grotesque } from 'next/font/google'
@@ -23,7 +24,11 @@ export default function RootLayout({
       lang="en"
       className={`${bricolage.className} h-full antialiased`}
     >
-      <body className={` ${bricolage.className} min-h-full flex flex-col`}>{children}</body>
+      <body className={` ${bricolage.className} min-h-full flex flex-col`}>
+        <Navbar />
+
+        {children}
+      </body>
     </html>
   );
 }
