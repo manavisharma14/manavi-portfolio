@@ -79,14 +79,14 @@ const projects : Project[] = [
 },
 
 {
-  title: "CircleConnect",
+  title: "ThreadO",
   tag: "product",
   accent: "#3b82f6",
   tech: ["Next.js", "Firebase", "Auth"],
   highlights: ["Social Graph", "Live Discussions"],
   status: "beta",
-  image: "/projects/circleconnect.png",
-  link: "https://circleconnectt.vercel.app/",
+  image: "/projects/threado.png",
+  link: "https://threadoto.vercel.app/",
 },
 {
   title: "SwapCampus",
