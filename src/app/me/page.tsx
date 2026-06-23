@@ -703,6 +703,10 @@ export default function Home() {
 .badge-ai        { background: #e0e7ff; color: #3730a3; }
 .badge-freelance { background: #fef3c7; color: #92400e; }
 .badge-product   { background: #fde68a; color: #92400e; }
+.badge-systems {
+  background: #cffafe;
+  color: #0e7490;
+}
 
 /* DESC */
 .proj-desc {

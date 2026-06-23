@@ -32,7 +32,7 @@ type Project = {
 
   badge?: "Founder" | "Co-founder" | "Founding member"; // 👈 ADD THIS
 
-  proof?: string; // 👈 OPTIONAL (for 1-line credibility like "150+ users")
+  proof?: string; // 
 
   details?: {
     problem: string;
@@ -190,6 +190,31 @@ cred: [
       role: "Lead engineer — architecture, Firebase integration, social graph logic, UI.",
     },
   },
+
+  {
+  title: "Distributed Search Engine",
+  slug: "distributed-search-engine",
+  tag: "systems",
+  accent: "#06b6d4",
+  tech: ["Go", "Docker", "TF-IDF", "Sharding", "Concurrency", "REST APIs"],
+  highlights: ["150K+ Docs", "3 Shards", "500 QPS Tested"],
+  status: "research",
+  image: "/projects/search-engine.png",
+  link: "https://github.com/manavisharma14/distributed-search-engine",
+  description:
+    "Distributed search engine with sharded inverted indexes, TF-IDF ranking, concurrent fan-out, and top-K retrieval.",
+  details: {
+    problem:
+      "Single-node search systems become bottlenecked when indexing and ranking large document collections under concurrent query load.",
+    solution:
+      "Built a Go-based distributed search architecture with shard servers maintaining inverted indexes and an aggregator that fans out queries concurrently, merges shard results, and returns global top-K matches.",
+    outcome:
+      "Indexed 250K+ documents across three shards and load-tested the system with Vegeta up to 500 QPS, identifying CPU saturation and request-queueing bottlenecks under high concurrency.",
+    role:
+      "Designed and implemented the shard indexing, TF-IDF ranking, min-heap top-K retrieval, concurrent aggregation layer, Docker Compose deployment, and load-testing workflow.",
+  },
+},
+  
   {
     title: "SwapCampus",
     slug: "swapcampus",
@@ -1502,6 +1527,10 @@ export default function HomePage() {
         .badge-product   { background: #fde68a; color: #a16207; }
         .badge-ai        { background: #e0e7ff; color: #3730a3; }
         .badge-media     { background: #fce7f3; color: #be185d; }
+        .badge-systems {
+  background: #cffafe;
+  color: #0e7490;
+}
         .proj-status {
           font-size: 10px;
           font-weight: 600;

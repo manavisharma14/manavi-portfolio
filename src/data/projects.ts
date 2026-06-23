@@ -46,7 +46,7 @@ export const projects: Project[] = [
       problem:
         "Student freelancers lack a trusted, structured platform to find work. Existing marketplaces are saturated, generic, and not tailored to student workflows or trust mechanisms.",
       solution:
-"Built a dedicated freelance marketplace with Stripe-based checkout infrastructure, student-focused onboarding, and a clean UX for posting, discovery, and transactions.",
+        "Built a dedicated freelance marketplace with Stripe-based checkout infrastructure, student-focused onboarding, and a clean UX for posting, discovery, and transactions.",
       outcome:
         "Secured $6K in non-dilutive funding, launched live payments, and onboarded early users actively posting and completing gigs.",
       role:
@@ -76,46 +76,46 @@ export const projects: Project[] = [
         "Founding member — contributed to product development, frontend engineering, and AI workflow design.",
     },
   },
- {
-  title: "BeyondColor",
-  tag: "healthtech",
-  accent: "#6366f1",
-  badge: "Co-founder",
-  tech: ["Next.js", "Computer Vision", "Healthcare", "Product"],
-  highlights: [
-    "$6K Non-Dilutive Funding",
-    "Chicago Booth I2M",
-    "Microsoft Pitch"
-  ],
-  status: "beta",
-  image: "/projects/beyondcolor.png",
-  link: "https://beyondcolor.app",
-  description:
-    "Funded digital health startup modernizing color vision screening through real-world perception and accessibility.",
+  {
+    title: "BeyondColor",
+    tag: "healthtech",
+    accent: "#6366f1",
+    badge: "Co-founder",
+    tech: ["Next.js", "Computer Vision", "Healthcare", "Product"],
+    highlights: [
+      "$6K Non-Dilutive Funding",
+      "Chicago Booth I2M",
+      "Microsoft Pitch"
+    ],
+    status: "beta",
+    image: "/projects/beyondcolor.png",
+    link: "https://beyondcolor.app",
+    description:
+      "Funded digital health startup modernizing color vision screening through real-world perception and accessibility.",
 
-  featured: true,
+    featured: true,
 
-  cred: [
-    { label: "$5K NSF i-Corps", type: "funding" },
-    { label: "$1K Booth I2M", type: "funding" },
-    { label: "Microsoft Pitch", type: "award" },
-    { label: "Chicago Booth", type: "program" },
-  ],
+    cred: [
+      { label: "$5K NSF i-Corps", type: "funding" },
+      { label: "$1K Booth I2M", type: "funding" },
+      { label: "Microsoft Pitch", type: "award" },
+      { label: "Chicago Booth", type: "program" },
+    ],
 
-  details: {
-    problem:
-      "Traditional color vision tests rely on static charts that fail to reflect real-world perception, often leading to inaccurate screening outcomes.",
+    details: {
+      problem:
+        "Traditional color vision tests rely on static charts that fail to reflect real-world perception, often leading to inaccurate screening outcomes.",
 
-    solution:
-      "Built a modern digital screening platform with interactive testing, accessibility-first UX, and future-ready adaptive analytics.",
+      solution:
+        "Built a modern digital screening platform with interactive testing, accessibility-first UX, and future-ready adaptive analytics.",
 
-    outcome:
-      "Secured $6K in non-dilutive funding, presented at Microsoft Chicago, completed customer discovery including San Francisco startup ecosystem interviews, and validated market demand across healthcare and accessibility sectors.",
+      outcome:
+        "Secured $6K in non-dilutive funding, presented at Microsoft Chicago, completed customer discovery including San Francisco startup ecosystem interviews, and validated market demand across healthcare and accessibility sectors.",
 
-    role:
-      "Co-founder — led product strategy, fundraising, customer discovery, partnerships, and product execution.",
+      role:
+        "Co-founder — led product strategy, fundraising, customer discovery, partnerships, and product execution.",
+    },
   },
-},
   {
     title: "ThreadO",
     tag: "product",
@@ -137,6 +137,45 @@ export const projects: Project[] = [
         "Lead engineer — architecture, Firebase integration, social graph logic, UI.",
     },
   },
+
+  {
+    title: "Distributed Search Engine",
+    tag: "systems",
+    accent: "#06b6d4",
+    tech: [
+      "Go",
+      "Distributed Systems",
+      "Docker",
+      "Concurrency",
+      "TF-IDF",
+      "REST APIs"
+    ],
+    highlights: [
+      "250K Documents Indexed",
+      "3 Search Shards",
+      "500 QPS Tested"
+    ],
+    status: "live",
+    image: "/projects/search-engine.png",
+    link: "https://github.com/yourusername/distributed-search-engine",
+    description:
+      "Horizontally scalable search engine built in Go with sharded inverted indexes, concurrent query fan-out, TF-IDF ranking, and top-K retrieval.",
+    featured: true,
+
+    details: {
+      problem:
+        "Traditional search systems become bottlenecked when a single node is responsible for indexing and ranking large document collections.",
+
+      solution:
+        "Built a distributed search architecture consisting of multiple shard servers and a query aggregator. Each shard maintains an inverted index and independently executes TF-IDF ranking, while the aggregator performs concurrent fan-out requests and merges global top-K results.",
+
+      outcome:
+        "Indexed 150,000+ documents across three shards and benchmarked the system under load using Vegeta. Achieved 500 requests per second with concurrent shard querying, connection pooling, and Dockerized deployment.",
+
+      role:
+        "Designed the distributed architecture, implemented indexing and ranking algorithms in Go, built shard aggregation logic, containerized services with Docker, and conducted performance benchmarking and optimization."
+    }
+  },
   {
     title: "SwapCampus",
     tag: "product",
@@ -149,13 +188,15 @@ export const projects: Project[] = [
     description: "Campus-only marketplace with identity-based access control.",
     details: {
       problem:
-        "Facebook Marketplace is unsafe for campus trades — no identity verification means scams are rampant and trust is near zero.",
+        "Buying and selling on large marketplaces can feel risky for students because there is little accountability and no campus-specific verification.",
+
       solution:
-        "Built a .edu email-gated marketplace with JWT-based identity, moderated listings, and an escrow-style handoff flow. MongoDB powers fast search across categories.",
+        "Built a campus-only marketplace with .edu email verification, secure authentication, moderated listings, and category-based search.",
+
       outcome:
-        "Live with 150+ listings in the first month. Zero reported scam incidents. Expanding to two more campuses.",
+        "Built and launched a functional campus marketplace with authentication, search, and listing management features.",
       role:
-        "Solo founder — backend, auth system, moderation tools, full deployment.",
+        "Solo builder — designed the product, built the backend and authentication system, and handled deployment.",
     },
   },
   {

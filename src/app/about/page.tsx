@@ -1158,6 +1158,10 @@ export default function HomePage() {
         .badge-freelance { background: #fef3c7; color: #92400e; }
         .badge-product   { background: #fde68a; color: #a16207; }
         .badge-ai        { background: #e0e7ff; color: #3730a3; }
+        .badge-systems {
+  background: #cffafe;
+  color: #0e7490;
+}
         .proj-status {
           font-size: 10px;
           font-weight: 600;
